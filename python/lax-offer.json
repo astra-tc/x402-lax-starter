@@ -8,7 +8,7 @@
   "capabilities": [
     {
       "skill_id": "market.snapshot",
-      "description": "Crypto market snapshot JSON: top coins with price, 24h change and market cap.",
+      "description": "Top-100 crypto market snapshot JSON: global market cap and volume, fear and greed, majors, breadth, top gainers and losers.",
       "pricing": {
         "model": "per_call",
         "amount": "0.05",
@@ -22,12 +22,44 @@
       },
       "output_schema": {
         "type": "object",
+        "required": [
+          "ts",
+          "global",
+          "majors",
+          "breadth",
+          "gainers",
+          "losers"
+        ],
         "properties": {
           "ts": {
             "type": "string"
           },
-          "coins": {
+          "global": {
+            "type": "object"
+          },
+          "fear_greed": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "majors": {
             "type": "array"
+          },
+          "breadth": {
+            "type": "object"
+          },
+          "gainers": {
+            "type": "array"
+          },
+          "losers": {
+            "type": "array"
+          },
+          "sources": {
+            "type": "array"
+          },
+          "note": {
+            "type": "string"
           }
         }
       }
