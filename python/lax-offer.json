@@ -1,0 +1,47 @@
+{
+  "lax_version": "1.0",
+  "name": "Astra x402 data agent (Python starter)",
+  "description": "Paid agent built from the astra-tc x402 LAX starter (Python): crypto market snapshot JSON priced per call in USDC over x402 on Base. Replace endpoint and capability with your own when you use the template.",
+  "category": "developer-tools",
+  "endpoint": "https://astra-x402-data.astratc.workers.dev/v1/snapshot",
+  "agent_did": "did:web:astra-x402-data.astratc.workers.dev",
+  "capabilities": [
+    {
+      "skill_id": "market.snapshot",
+      "description": "Crypto market snapshot JSON: top coins with price, 24h change and market cap.",
+      "pricing": {
+        "model": "per_call",
+        "amount": "0.05",
+        "currency": "USDC",
+        "rail": "x402"
+      },
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "ts": {
+            "type": "string"
+          },
+          "coins": {
+            "type": "array"
+          }
+        }
+      }
+    }
+  ],
+  "constitutional_constraints": [
+    "Solidarity Oath",
+    "Renewal Mandate",
+    "Treasury Equilibrium",
+    "Harm Shield",
+    "Transparency Covenant"
+  ],
+  "payment_rails": [
+    "x402",
+    "usdc-base"
+  ]
+}

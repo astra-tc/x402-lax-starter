@@ -1,0 +1,10 @@
+[
+  {"id": "M1 work before settle", "file": "typescript/src/app.ts", "from": "      if (!settled?.success) return paymentRequired(request,", "to": "      await work(request); if (!settled?.success) return paymentRequired(request,"},
+  {"id": "M2 skip verify result", "file": "typescript/src/app.ts", "from": "if (!verified?.isValid) return", "to": "if (false) return"},
+  {"id": "M3 wrong decimals", "file": "typescript/src/price.ts", "from": "BigInt(whole!) * 1_000_000n", "to": "BigInt(whole!) * 1_000_00n"},
+  {"id": "M4 sepolia uses mainnet USDC", "file": "typescript/src/price.ts", "from": "'base-sepolia': '0x036CbD53842c5426634e7929541eC2318f3dCF7e'", "to": "'base-sepolia': '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'"},
+  {"id": "M5 v2 uses X-PAYMENT", "file": "typescript/src/list.ts", "from": "version >= 2 ? 'PAYMENT-SIGNATURE' : 'X-PAYMENT'", "to": "'X-PAYMENT'"},
+  {"id": "M6 Five Laws not checked", "file": "typescript/src/offer.ts", "from": "for (const law of FIVE_LAWS) if (!laws.includes(law))", "to": "for (const law of []) if (!laws.includes(law))"},
+  {"id": "M7 no X-PAYMENT-RESPONSE", "file": "typescript/src/app.ts", "from": "'X-PAYMENT-RESPONSE': enc(", "to": "'X-OTHER': enc("},
+  {"id": "M8 network not enforced", "file": "typescript/src/app.ts", "from": "if (payload.scheme !== 'exact' || payload.network !== opts.network)", "to": "if (payload.scheme !== 'exact')"}
+]

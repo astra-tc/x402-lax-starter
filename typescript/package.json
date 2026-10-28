@@ -1,0 +1,28 @@
+{
+  "name": "x402-lax-starter-ts",
+  "version": "0.1.0",
+  "description": "TypeScript starter for a paid agent listed on LAX: one x402 route, a LAX offer with the Five Laws, a listing script",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node --import tsx --test test/*.test.ts",
+    "start": "node --import tsx src/server.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "mutation": "cd .. && TEST_CMD='cd typescript && npm test --silent' node scripts/mutation-check.mjs"
+  },
+  "keywords": [],
+  "author": "Astra Trading Co",
+  "license": "MIT",
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3"
+  },
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  }
+}
