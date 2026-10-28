@@ -38,11 +38,18 @@ Replace `endpoint` and the capability in `lax-offer.json` with your own domain a
 | A2 | verify then settle then 200 with X-PAYMENT-RESPONSE; 4 failure modes give 402 and no work; bad headers never reach the facilitator; default HTTP facilitator bodies | same (parametrised) |
 | A3 | both offers pass the registry rules (Five Laws, https endpoint on your own domain, 1 to 10 priced capabilities with schemas) | same |
 | A4 | version 2 and 1 payment headers, pay() gets the terms, the id comes back, nothing printed, errors are plain | same |
-| A5 | todo: the Base Sepolia transaction hash of one paid call per starter goes here at M2 | |
-| A6 | the Python files exist, requirements are pinned, pytest covers A1 to A4 | 10 pytest tests |
+| A5 | the TypeScript README holds the Base Sepolia transaction hash of its paid call, checked in its format; proof in proofs/typescript.json | same, test_a5, proofs/python.json |
+| A6 | the Python files exist, requirements are pinned, pytest covers A1 to A4 | 11 pytest tests (A1 to A5) |
 
 `npm run mutation` (in `typescript/`) plants 8 bugs (work before settle, verify ignored, wrong decimals, wrong Sepolia USDC, wrong v2 header, Five Laws unchecked, missing X-PAYMENT-RESPONSE, network not enforced); all are caught.
 
 ## Base Sepolia proofs
 
-Recorded at M2: one paid call per starter on Base Sepolia, with its transaction hash here.
+One paid call per starter on Base Sepolia (unpaid call 402, then paid call 200 with X-PAYMENT-RESPONSE), 0.01 test USDC each, facilitator https://x402.org/facilitator, 28 Oct 2026:
+
+| Starter | Transaction |
+|---|---|
+| TypeScript | [0x596b73331019c74d83b7114e0717f4d3f05130c27b42d12612de8d6c7a96bb6b](https://sepolia.basescan.org/tx/0x596b73331019c74d83b7114e0717f4d3f05130c27b42d12612de8d6c7a96bb6b) |
+| Python | [0x97fe67761914ff467b4d79107769b702223a4b897ad6bb3ecde5190beae8ee9d](https://sepolia.basescan.org/tx/0x97fe67761914ff467b4d79107769b702223a4b897ad6bb3ecde5190beae8ee9d) |
+
+The settlement answers are in `proofs/`. Reproduce with `scripts/pay-once.mjs <url>` (needs `npm i viem`) and a funded Base Sepolia key in `PAYER_KEY` (testnet only).

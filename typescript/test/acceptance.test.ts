@@ -148,9 +148,21 @@ test('A4 listOffer answers the 402, pays through pay() and returns the id, loggi
   assert.equal(free.id, 'free-id');
 });
 
-test('A5 each starter answers 402 then a paid call on Base Sepolia, transaction hash in its README', { todo: 'needs one testnet USDC payment per starter; recorded at M2' }, () => {
-  const readme = readFileSync(new URL('../README.md', import.meta.url), 'utf8');
-  assert.match(readme, /Base Sepolia paid call: 0x[0-9a-f]{64}/);
+test('A5 each starter answers 402 then a paid call on Base Sepolia, transaction hash in its README', () => {
+  const hashes = new Set<string>();
+  for (const [starter, readmePath] of [['typescript', '../README.md'], ['python', '../../python/README.md']] as const) {
+    const readme = readFileSync(new URL(readmePath, import.meta.url), 'utf8');
+    const m = readme.match(/Base Sepolia paid call \(A5\): (0x[0-9a-f]{64})/);
+    assert.ok(m, `${starter} README holds a transaction hash`);
+    const proof = JSON.parse(readFileSync(new URL(`../../proofs/${starter}.json`, import.meta.url), 'utf8'));
+    assert.equal(proof.unpaid, 402);
+    assert.equal(proof.paidStatus, 200);
+    assert.equal(proof.settlement.success, true);
+    assert.equal(proof.settlement.network, 'base-sepolia');
+    assert.equal(proof.settlement.transaction, m![1]);
+    hashes.add(m![1]!);
+  }
+  assert.equal(hashes.size, 2, 'one paid call per starter');
 });
 
 test('A6 the Python starter mirrors A1 to A4 with pytest tests', () => {

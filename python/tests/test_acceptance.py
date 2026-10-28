@@ -124,3 +124,16 @@ def test_a4_listing_pays_the_402_and_returns_the_id(version, capsys):
     assert capsys.readouterr() == ("", "")
     with pytest.raises(RuntimeError, match="HTTP 422"):
         list_offer({}, pay=lambda t: "x", session=Session([Resp(422, {"error": "screening refused"})]))
+
+
+def test_a5_paid_call_on_base_sepolia_hash_in_readme():
+    root = pathlib.Path(__file__).resolve().parents[2]
+    readme = (root / "python" / "README.md").read_text()
+    import re
+    m = re.search(r"Base Sepolia paid call \(A5\): (0x[0-9a-f]{64})", readme)
+    assert m, "README holds the transaction hash"
+    proof = json.loads((root / "proofs" / "python.json").read_text())
+    assert proof["unpaid"] == 402 and proof["paidStatus"] == 200
+    assert proof["settlement"]["success"] is True
+    assert proof["settlement"]["network"] == "base-sepolia"
+    assert proof["settlement"]["transaction"] == m.group(1)

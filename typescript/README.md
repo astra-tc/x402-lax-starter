@@ -10,4 +10,4 @@ Run: `PAY_TO=0x... NETWORK=base-sepolia PRICE=0.01 FACILITATOR_URL=https://x402.
 - `src/offer.ts` validateOffer(offer) with the LAX registry rules and the Five Laws
 - `lax-offer.json` the offer; set `endpoint` to your own domain
 
-Base Sepolia paid call (A5): transaction hash recorded here at M2.
+Base Sepolia paid call (A5): 0x596b73331019c74d83b7114e0717f4d3f05130c27b42d12612de8d6c7a96bb6b (https://sepolia.basescan.org/tx/0x596b73331019c74d83b7114e0717f4d3f05130c27b42d12612de8d6c7a96bb6b), 0.01 test USDC, settled through https://x402.org/facilitator on 28 Oct 2026, answered 200 with X-PAYMENT-RESPONSE.

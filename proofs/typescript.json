@@ -1,0 +1,15 @@
+{
+ "unpaid": 402,
+ "paidStatus": 200,
+ "body": {
+  "ok": true,
+  "result": "paid work done",
+  "at": "2026-10-28T12:51:22.785Z"
+ },
+ "settlement": {
+  "success": true,
+  "transaction": "0x596b73331019c74d83b7114e0717f4d3f05130c27b42d12612de8d6c7a96bb6b",
+  "network": "base-sepolia",
+  "payer": "0xA987C65b6CdcB8e16f901659b48b0730b52B34b6"
+ }
+}
